@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing Widget</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="widget">
+        <div class="current-song" id="current-song">
+            <img id="current-song-art" src="" alt="Current song art">
+            <div>Loading scrobbles...</div> <!-- Text is now in a div -->
+        </div>
+        <ul class="scrobbles" id="scrobbles"></ul>
+    </div>
+    <script>
+        const API_KEY = 'LASTFM_API_KEY';
+        const USERNAME = 'Kirito139';
+        const currentSongDiv = document.getElementById('current-song');
+        const currentSongArt = document.getElementById('current-song-art');
+        const scrobblesList = document.getElementById('scrobbles');
+
+        async function fetchScrobbles() {
+            const response = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=5`);
+            const data = await response.json();
+            return data.recenttracks.track;
+        }
+
+        async function updateWidget() {
+            const tracks = await fetchScrobbles();
+            if (tracks.length > 0) {
+                const nowPlaying = tracks[0]['@attr']?.nowplaying ? tracks[0] : tracks.find(track => track['@attr']?.nowplaying);
+                if (nowPlaying) {
+                    currentSongDiv.innerHTML = `
+                        <img src="${nowPlaying.image[2]['#text']}" alt="${nowPlaying.name} album art">
+                        <div>${nowPlaying.artist['#text']} - ${nowPlaying.name}</div>
+                    `;
+                } else {
+                    currentSongDiv.innerHTML = '<div>No song currently playing</div>';
+                }
+                scrobblesList.innerHTML = '';
+                tracks.forEach(track => {
+                    if (!track['@attr']?.nowplaying) {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'scrobble';
+                        listItem.innerHTML = `
+                            <img src="${track.image[2]['#text']}" alt="${track.name} album art">
+                            <div>${track.artist['#text']} - ${track.name}</div>
+                        `;
+                        scrobblesList.appendChild(listItem);
+                    }
+                });
+            }
+        }
+
+        setInterval(updateWidget, 30000); // Update every 30 seconds
+        updateWidget(); // Initial fetch
+    </script>
+</body>
+</html>
