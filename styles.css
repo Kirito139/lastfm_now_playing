@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.widget {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* padding */
+    width: 220px; /* width */
+    height: 280px; /* height */
+    display: flex;
+    flex-direction: column;
+}
+.current-song {
+    display: flex; /* use flexbox for alignment */
+    align-items: center; /* center items vertically */
+    margin-bottom: 5px; /* margin */
+    height: 20%; /* height */
+}
+.current-song img {
+    width: 50px; /* Album art size */
+    height: 50px; /* Album art size */
+    margin-right: 5px; /* Space between image and text */
+    border-radius: 4px;
+}
+.current-song div {
+    font-size: 0.7em; /* text size */
+    text-align: left; /* Align text to the left */
+}
+.scrobbles {
+    list-style-type: none;
+    padding: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.scrobble {
+    padding: 3px 0; /* padding */
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd;
+}
+.scrobble img {
+    width: 30px; /* album art size */
+    height: 30px; /* album art size */
+    margin-right: 5px; /* space between image and text */
+    border-radius: 4px;
+}
+.scrobble div {
+    font-size: 0.7em; /* text size */
+}
