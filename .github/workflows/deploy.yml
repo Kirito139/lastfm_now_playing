@@ -8,13 +8,15 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
       - name: Replace API Key
         env:
           API_KEY: ${{ secrets.API_KEY }}
         run: |
-          sed -i 's/YOUR_API_KEY_PLACEHOLDER/${{ secrets.API_KEY }}/g' index.html
+          sed -i 's/LAST_FM_API_KEY/${{ secrets.API_KEY }}/g' index.html
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
