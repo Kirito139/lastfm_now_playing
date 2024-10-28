@@ -15,12 +15,14 @@ body {
     height: 275px; /* height */
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 .current-song {
     display: flex; /* use flexbox for alignment */
     align-items: center; /* center items vertically */
     margin-bottom: 5px; /* margin */
     height: 18%; /* height */
+    min-height: 50px;
 }
 .current-song img {
     width: 50px; /* Album art size */
@@ -36,13 +38,16 @@ body {
     list-style-type: none;
     padding: 0;
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .scrobble {
     padding: 3px 0; /* padding */
     display: flex;
     align-items: center;
     border-top: 1px solid #ddd;
+    flex-shrink: 0; /* prevent scrobble items from collapsing */
 }
 .scrobble img {
     width: 30px; /* album art size */
