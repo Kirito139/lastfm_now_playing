@@ -23,10 +23,6 @@ body {
     margin-bottom: 5px; /* margin */
     height: 18%; /* height */
     min-height: 50px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 150px;
 }
 .current-song img {
     width: 50px; /* Album art size */
