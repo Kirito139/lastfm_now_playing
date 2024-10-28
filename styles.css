@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@ body {
     display: flex; /* use flexbox for alignment */
     align-items: center; /* center items vertically */
     margin-bottom: 5px; /* margin */
-    height: 20%; /* height */
+    height: 18%; /* height */
 }
 .current-song img {
     width: 50px; /* Album art size */
