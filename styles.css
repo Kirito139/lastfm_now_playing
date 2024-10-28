@@ -1,13 +1,18 @@
+:root {
+    --bg-color: #000000;
+    --text-color: #D9D9D9;
+    --accent-color: #BB0001;
+}
 body {
     font-family: Arial, sans-serif;
-    /* background-color: #f4f4f4; */
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 .widget {
-    background: white;
+    background: var(--bg-color);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 10px; /* padding */
