@@ -23,12 +23,17 @@ body {
     margin-bottom: 5px; /* margin */
     height: 18%; /* height */
     min-height: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
 }
 .current-song img {
     width: 50px; /* Album art size */
     height: 50px; /* Album art size */
     margin-right: 5px; /* Space between image and text */
     border-radius: 4px;
+    flex-shrink: 0;
 }
 .current-song div {
     font-size: 0.7em; /* text size */
@@ -48,13 +53,19 @@ body {
     align-items: center;
     border-top: 1px solid #ddd;
     flex-shrink: 0; /* prevent scrobble items from collapsing */
+    width: 100%;
 }
 .scrobble img {
     width: 30px; /* album art size */
     height: 30px; /* album art size */
     margin-right: 5px; /* space between image and text */
     border-radius: 4px;
+    flex-shrink: 0;
 }
 .scrobble div {
     font-size: 0.7em; /* text size */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 170px;
 }
