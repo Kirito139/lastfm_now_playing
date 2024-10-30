@@ -8,12 +8,15 @@
 </head>
 <body>
     <div class="widget">
-        <a title="last.fm" referrerpolicy="no-referrer" href="https://www.last.fm/user/Kirito139">
+        <a href="https://www.last.fm/user/Kirito139">
             <img id="lastfm-logo" src="https:/kirito139.github.io/lastfm_now_playing/lastfm.png">
         </a>
         <div class="current-song" id="current-song">
             <img id="current-song-art" src="" alt="Current song art">
-            <div>Loading scrobbles...</div> <!-- Text is now in a div -->
+            <div class="current-song-details">
+                <div id="current-song-info">Loading scrobbles...</div> <!-- Text is now in a div -->
+                <div id="now-playing-text"></div>
+            </div>
         </div>
         <ul class="scrobbles" id="scrobbles"></ul>
     </div>
@@ -37,19 +40,22 @@
                 if (nowPlaying) {
                     currentSongDiv.innerHTML = `
                         <img src="${nowPlaying.image[2]['#text']}" alt="${nowPlaying.name} album art">
-                        <div>${nowPlaying.artist['#text']} - ${nowPlaying.name}</div>
+                        <div id="current-song-info">${nowPlaying.artist['#text']} - ${nowPlaying.name}</div>
+                        <div id="now-playing-text" class="now-playing">Now Playing</div>
                     `;
                 } else {
                     currentSongDiv.innerHTML = '<div>No song currently playing</div>';
                 }
                 scrobblesList.innerHTML = '';
-                tracks.forEach(track => {
+                tracks.forEach((track, index) => {
                     if (!track['@attr']?.nowplaying) {
                         const listItem = document.createElement('li');
                         listItem.className = 'scrobble';
+                        const timeAgo = getTimeAgo(track.date.uts);
                         listItem.innerHTML = `
                             <img src="${track.image[2]['#text']}" alt="${track.name} album art">
                             <div>${track.artist['#text']} - ${track.name}</div>
+                            <div class="time-ago">${timeAgo}</div>
                         `;
                         scrobblesList.appendChild(listItem);
                     }
@@ -57,6 +63,18 @@
             }
         }
 
+        function getTimeAgo(timestamp) {
+            const now = Math.floor(Date.now() / 1000);
+            const seconds = now - timestamp;
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+
+            if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+            if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            return 'Just now';
+        }
         setInterval(updateWidget, 30000); // Update every 30 seconds
         updateWidget(); // Initial fetch
     </script>

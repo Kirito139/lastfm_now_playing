@@ -32,6 +32,16 @@ body {
     height: 20%; /* height */
     min-height: 50px;
 }
+.current-song-details {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+#current-song-info {
+    margin-bottom: 5px;
+}
 .current-song img {
     width: 50px; /* Album art size */
     height: 50px; /* Album art size */
@@ -72,4 +82,16 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 170px;
+}
+.now-playing {
+    font-size: 0.8em;
+    color: #1DB954;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.time-ago {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 3px;
 }
