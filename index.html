@@ -8,8 +8,12 @@
 </head>
 <body>
     <div class="widget">
-        <a href="https://www.last.fm/user/Kirito139">
-            <img id="lastfm-logo" src="https://raw.githubusercontent.com/Kirito139/lastfm_now_playing/refs/heads/main/lastfm.png">
+        <!-- <a href="https://www.last.fm/user/Kirito139" style="color: inherit; text-decoration: none; display: inline-block; font-size: 8px;">
+            <img id="lastfm-logo" src="https://raw.githubusercontent.com/Kirito139/lastfm_now_playing/refs/heads/main/lastfm.png"> <span>Kirito139's Scrobbles:</span>
+        </a> -->
+        <a href="https://www.last.fm/user/Kirito139" class="lastfm-link">
+            <img id="lastfm-logo" src="https://raw.githubusercontent.com/Kirito139/lastfm_now_playing/refs/heads/main/lastfm.png" alt="Last.fm logo">
+            <span>Kirito139's Scrobbles:</span>
         </a>
         <div class="current-song" id="current-song">
             <img id="current-song-art" src="" alt="Current song art">
@@ -37,11 +41,22 @@
             const tracks = await fetchScrobbles();
             if (tracks.length > 0) {
                 const nowPlaying = tracks[0]['@attr']?.nowplaying ? tracks[0] : tracks.find(track => track['@attr']?.nowplaying);
-                if (nowPlaying) {
+                /*if (nowPlaying) {
                     currentSongDiv.innerHTML = `
                         <img src="${nowPlaying.image[2]['#text']}" alt="${nowPlaying.name} album art">
                         <div id="current-song-info">${nowPlaying.artist['#text']} - ${nowPlaying.name}</div>
                         <div id="now-playing-text" class="now-playing">Now Playing</div>
+                    `;
+                } else {
+                    currentSongDiv.innerHTML = '<div>No song currently playing</div>';
+                }*/
+                if (nowPlaying) {
+                    currentSongDiv.innerHTML = `
+                        <img src="${nowPlaying.image[2]['#text']}" alt="${nowPlaying.name} album art">
+                        <div class="current-song-details">
+                            <div id="current-song-info">${nowPlaying.artist['#text']} - ${nowPlaying.name}</div>
+                            <div id="now-playing-text" class="now-playing">Now Scrobbling</div>
+                        </div>
                     `;
                 } else {
                     currentSongDiv.innerHTML = '<div>No song currently playing</div>';
@@ -52,11 +67,18 @@
                         const listItem = document.createElement('li');
                         listItem.className = 'scrobble';
                         const timeAgo = getTimeAgo(track.date.uts);
-                        listItem.innerHTML = `
+                        /*listItem.innerHTML = `
                             <img src="${track.image[2]['#text']}" alt="${track.name} album art">
                             <div>${track.artist['#text']} - ${track.name}</div>
                             <div class="time-ago">${timeAgo}</div>
-                        `;
+                        `;*/
+                        listItem.innerHTML = `
+                        <img src="${track.image[2]['#text']}" alt="${track.name} album art">
+                        <div class="scrobble-details">
+                            <div class="scrobble-song">${track.artist['#text']} - ${track.name}</div>
+                            <div class="time-ago">${timeAgo}</div>
+                        </div>
+                    `;
                         scrobblesList.appendChild(listItem);
                     }
                 });
