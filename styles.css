@@ -99,7 +99,6 @@ body {
     width: 30px; /* album art size */
     height: 30px; /* album art size */
     margin-right: 5px; /* space between image and text */
-    border-radius: 4px;
     flex-shrink: 0;
 }
 .scrobble div {
