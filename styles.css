@@ -37,6 +37,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 .lastfm-link {
     display: flex;
