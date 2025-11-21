@@ -52,7 +52,7 @@
                 }*/
                 if (nowPlaying) {
                     currentSongDiv.innerHTML = `
-                        <img src="${nowPlaying.image[2]['#text']}" alt="${nowPlaying.name} album art">
+                        <img src="${nowPlaying.image[0]['#text']}" alt="${nowPlaying.name} album art">
                         <div class="current-song-details">
                             <div id="current-song-info">${nowPlaying.name} - ${nowPlaying.artist['#text']}</div>
                             <div id="now-playing-text" class="now-playing">Now Scrobbling</div>
@@ -73,7 +73,7 @@
                             <div class="time-ago">${timeAgo}</div>
                         `;*/
                         listItem.innerHTML = `
-                        <img src="${track.image[2]['#text']}" alt="${track.name} album art">
+                        <img src="${track.image[0]['#text']}" alt="${track.name} album art">
                         <div class="scrobble-details">
                             <div class="scrobble-song">${track.name} - ${track.artist['#text']}</div>
                             <div class="time-ago">${timeAgo}</div>
