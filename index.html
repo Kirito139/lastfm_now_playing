@@ -52,7 +52,7 @@
                 }*/
                 if (nowPlaying) {
                     currentSongDiv.innerHTML = `
-                        <img src="${nowPlaying.image[0]['#text']}" alt="${nowPlaying.name} album art">
+                        <img src="${nowPlaying.image[1]['#text']}" alt="${nowPlaying.name} album art">
                         <div class="current-song-details">
                             <div id="current-song-info">${nowPlaying.name} - ${nowPlaying.artist['#text']}</div>
                             <div id="now-playing-text" class="now-playing">Now Scrobbling</div>
