@@ -120,3 +120,8 @@ body {
     color: #666;
     margin-top: 3px;
 }
+
+blink, .blink-css {
+	animation:blink 1s ease-in infinite alternate;
+}
+
